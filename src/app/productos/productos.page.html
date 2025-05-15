@@ -1,0 +1,18 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Productos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let p of productos">
+      {{ p.nombre }} - ${{ p.precio }}
+      <ion-button slot="end" (click)="agregar(p)">Agregar</ion-button>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="block" color="primary" routerLink="/carrito">
+  Ir al carrito
+</ion-button>
+</ion-content>
+
