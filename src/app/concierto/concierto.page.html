@@ -1,0 +1,68 @@
+<!-- Formulario para añadir nuevo comprador -->
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Agregar nuevo comprador</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-item>
+      <ion-label position="stacked">Nombre</ion-label>
+      <ion-input [(ngModel)]="nuevoNombre" placeholder="Escribe un nombre"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>¿Compró?</ion-label>
+      <ion-toggle [(ngModel)]="nuevoCompro"></ion-toggle>
+    </ion-item>
+    <ion-button expand="block" (click)="agregarComprador()">Agregar</ion-button>
+  </ion-card-content>
+</ion-card>
+
+<ion-list>
+  <ion-item *ngFor="let comprador of compradores">
+    <ion-checkbox slot="start" [(ngModel)]="comprador.seleccionado" (ionChange)="onChange()"></ion-checkbox>
+    {{ comprador.nombre }} -
+    <ion-label color="{{ comprador.compro ? 'success' : 'danger' }}">
+      {{ comprador.compro ? 'Compró' : 'No compró' }}
+    </ion-label>
+  </ion-item>
+</ion-list>
+<!-- Botón para eliminar seleccionados -->
+<ion-button 
+  expand="block" 
+  color="medium" 
+  (click)="eliminarSeleccionados()" 
+  *ngIf="haySeleccionados">
+  Eliminar seleccionados
+</ion-button>
+
+
+<!-- Mostrar totales -->
+<ion-item>
+  <ion-label>
+    Total que compraron: {{ totalCompraron }} | Total que no compraron: {{ totalNoCompraron }}
+  </ion-label>
+</ion-item>
+
+<!-- Botón para reiniciar -->
+<ion-button expand="block" color="danger" (click)="reiniciarDatos()">
+  Reiniciar datos
+</ion-button>
+
+<!-- Sección para editar -->
+<ng-container *ngIf="haySeleccionados">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Editar estado de compra</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div *ngFor="let comprador of compradores">
+        <ng-container *ngIf="comprador.seleccionado">
+          <p>{{ comprador.nombre }}</p>
+          <ion-item>
+            <ion-label>¿Compró la boleta?</ion-label>
+            <ion-toggle [(ngModel)]="comprador.compro" (ionChange)="onChange()"></ion-toggle>
+          </ion-item>
+        </ng-container>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ng-container>

@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'productos',
+    redirectTo: 'concierto',
     pathMatch: 'full'
   },
   {
@@ -19,6 +19,11 @@ const routes: Routes = [
     path: 'carrito',
     loadChildren: () => import('./carrito/carrito.module').then( m => m.CarritoPageModule)
   },
+  {
+    path: 'concierto',
+    loadChildren: () => import('./concierto/concierto.module').then( m => m.ConciertoPageModule)
+  },
+
 ];
 
 @NgModule({
