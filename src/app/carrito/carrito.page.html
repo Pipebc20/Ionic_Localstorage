@@ -7,14 +7,15 @@
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let p of carrito">
-      {{ p.nombre }} x{{ p.cantidad }} - ${{ p.precio * p.cantidad }}
+      <ion-label>
+        <h2>{{ p.nombre }} x{{ p.cantidad }} - ${{ p.precio * p.cantidad }}</h2>
+        <p>{{ p.descripcion }}</p>
+      </ion-label>
       <ion-button color="danger" slot="end" (click)="eliminar(p.id)">Eliminar</ion-button>
     </ion-item>
   </ion-list>
   <ion-button expand="block" color="warning" (click)="limpiar()">Vaciar carrito</ion-button>
   <ion-button expand="block" color="medium" routerLink="/productos">
-  Volver a productos
+    Volver a productos
   </ion-button>
-
 </ion-content>
-

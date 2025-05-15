@@ -1,6 +1,14 @@
 import { Component } from '@angular/core';
 import { CartService } from '../services/cart.service';
 
+interface Producto {
+  id: number;
+  nombre: string;
+  precio: number;
+  cantidad: number;
+  descripcion?: string;
+}
+
 @Component({
   selector: 'app-productos',
   templateUrl: './productos.page.html',
@@ -9,15 +17,14 @@ import { CartService } from '../services/cart.service';
 export class ProductosPage {
   productos = [
     { id: 1, nombre: 'Camiseta', precio: 50, cantidad: 1 },
-    { id: 2, nombre: 'Pantalón', precio: 100, cantidad: 1 },
-    { id: 3, nombre: 'Zapatos', precio: 150, cantidad: 1 },
-    { id: 4, nombre: 'Gorra', precio: 20, cantidad: 1 }
+    { id: 2, nombre: 'Pantalón', precio: 100, cantidad: 1 }
   ];
 
   constructor(private cartService: CartService) {}
 
-  agregar(producto: any) {
+  agregar(producto: Producto): void {
     this.cartService.agregarProducto({ ...producto });
-    alert('Producto agregado al carrito');
+    // Puedes mostrar un mensaje de éxito de otra forma si lo prefieres
+    // Ejemplo: this.mensaje = 'Producto agregado al carrito';
   }
 }

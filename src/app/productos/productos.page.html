@@ -7,12 +7,22 @@
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let p of productos">
-      {{ p.nombre }} - ${{ p.precio }}
+      <ion-label>
+        <h2>{{ p.nombre }}</h2>
+        <p>{{ p.descripcion }}</p>
+        <ion-badge color="success">${{ p.precio }}</ion-badge>
+      </ion-label>
       <ion-button slot="end" (click)="agregar(p)">Agregar</ion-button>
     </ion-item>
   </ion-list>
-  <ion-button expand="block" color="primary" routerLink="/carrito">
-  Ir al carrito
-</ion-button>
-</ion-content>
 
+  <ion-card *ngIf="productos.length === 0">
+    <ion-card-content>
+      No hay productos disponibles.
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="block" color="primary" routerLink="/carrito">
+    Ir al carrito
+  </ion-button>
+</ion-content>

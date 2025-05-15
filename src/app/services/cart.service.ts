@@ -10,7 +10,7 @@ export class CartService {
   constructor() {}
 
   getCarrito(): any[] {
-    const data = localStorage.getItem(this.CART_KEY);
+    const data = sessionStorage.getItem(this.CART_KEY);
     return data ? JSON.parse(data) : [];
   }
 
@@ -24,16 +24,16 @@ export class CartService {
       carrito.push(producto);
     }
 
-    localStorage.setItem(this.CART_KEY, JSON.stringify(carrito));
+    sessionStorage.setItem(this.CART_KEY, JSON.stringify(carrito));
   }
 
   eliminarProducto(id: number) {
     let carrito = this.getCarrito();
     carrito = carrito.filter(p => p.id !== id);
-    localStorage.setItem(this.CART_KEY, JSON.stringify(carrito));
+    sessionStorage.setItem(this.CART_KEY, JSON.stringify(carrito));
   }
 
   limpiarCarrito() {
-    localStorage.removeItem(this.CART_KEY);
+    sessionStorage.removeItem(this.CART_KEY);
   }
 }
