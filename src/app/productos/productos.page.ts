@@ -16,9 +16,22 @@ interface Producto {
 })
 export class ProductosPage {
   productos = [
-    { id: 1, nombre: 'Camiseta', precio: 50, cantidad: 1 },
-    { id: 2, nombre: 'Pantalón', precio: 100, cantidad: 1 }
-  ];
+  {
+    id: 1,
+    nombre: 'Producto 1',
+    descripcion: 'Descripción del producto 1',
+    precio: 10.99,
+    cantidad: 1
+  },
+  {
+    id: 2,
+    nombre: 'Producto 2',
+    descripcion: 'Descripción del producto 2',
+    precio: 12.99,
+    cantidad: 1
+  }
+];
+
 
   constructor(private cartService: CartService) {}
 
